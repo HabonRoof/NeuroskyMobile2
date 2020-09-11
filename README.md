@@ -107,13 +107,12 @@ Responce:OK
 
 # 硬體接線
 將HC05的TX連接到Arduino的Pin0(RX)
-將Pin
+將Pin3 ~ Pin12 每個腳位串連LED燈以及220歐姆電阻，並且接地。 
 
-Arduino Code:
-將本Repo的程式碼燒錄到ArduinoUno上即可。
+Arduino Code: 
+將本Repo的程式碼燒錄到ArduinoUno上即可。 
 
-
-# Reference
+# Reference 
 
 ## Official Website: 
 

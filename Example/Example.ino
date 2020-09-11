@@ -1,15 +1,23 @@
-////////////////////////////////////////////////////////////////////////
-// Arduino Bluetooth Interface with Mindwave
-// 
-// This is example code provided by NeuroSky, Inc. and is provided
-// license free.
-////////////////////////////////////////////////////////////////////////
+/* Arduino Bluetooth Interface with Mindwave
 
-#define LED 13
-#define BAUDRATE 57600
-#define DEBUGOUTPUT 0
+This is example code provided by NeuroSky, Inc. and is provided
+ license free.
+ 
+ Author: Chun-Lin Chen
+ Licence: CC-BY-AS 3.0
+ Date: 2020/09/11
+ Version: 0.9
+*/
 
-#define GREENLED1  3
+//Setup the constant variables
+
+#define LED 13								
+#define BAUDRATE 57600			//Define the Bluetooth UART baudrate, you can change it by using AT+UART=57600
+#define DEBUGOUTPUT 0			
+
+//Define the LED pin
+
+#define GREENLED1  3					
 #define GREENLED2  4
 #define GREENLED3  5
 #define YELLOWLED1 6
@@ -19,6 +27,8 @@
 #define REDLED1    10
 #define REDLED2    11
 #define REDLED3    12
+
+//Control the BT power
 
 #define powercontrol 10
 
@@ -52,13 +62,14 @@ void setup() {
   pinMode(REDLED3, OUTPUT);
 
   pinMode(LED, OUTPUT);
-  Serial.begin(BAUDRATE);           // USB
+  Serial.begin(BAUDRATE);           // USB baud rate, Let's set as the BT module baud rate
   Serial.println("Start");
 }
 
 ////////////////////////////////
 // Read data from Serial UART //
 ////////////////////////////////
+
 byte ReadOneByte() {
   int ByteRead;
   while(!Serial.available());
