@@ -1,7 +1,7 @@
 # Introduction
-This project use NeuroSky Mindwave mobile 2 as EGG sensor to detect human brain wave, and use HC-05 bluetooth module to communicate with Arduino to control LED state. 
+This project use NeuroSky Mindwave mobile 2 as EEG sensor to detect human brain wave, and use HC-05 bluetooth module to communicate with Arduino to control LED state. 
 
-本專題使用NeuroSky Mindwave mobile 2 作為EGG感測器偵測腦電圖，並使用HC-05藍芽模組做為無線通訊界面，與Arduino做通訊，並且控制LED燈亮滅。 
+本專題使用NeuroSky Mindwave mobile 2 作為EEG感測器偵測腦電圖，並使用HC-05藍芽模組做為無線通訊界面，與Arduino做通訊，並且控制LED燈亮滅。 
 
 # Material needed
 
@@ -25,6 +25,46 @@ Third, upload the code for Arduino in this repositery.
 Finally, you can mind control the LED, and test how concentrate you can.
 
 # HC05 Bluetooth module setup
+
+First, Connect the USB-TTL converter to your HC-05 BT module,  the TX of converter connect to RX of HC-05, RX of converter connect to TX of HC-05.
+Second, use serial software such as RealTerm or Putty to transmit the AT commant to the bluetooth module.
+Third, press the button on the module before powering up, then keep pressing until the LED on HC-05 start blinking slowly (about once per second).
+This means HC-05 is operation in AT command mode.
+Then, follow the guide below to  setup your HC-05 module.
+1. Test your BT module is alive
+Command: AT
+Responce: OK
+2. Set the baudrete of UART of HC-05 as 57600
+Command: AT+UART=57600,0,0
+Responce: OK
+3. Assign HC-05 as Master (to connect to the Mindwave mobile)
+Command: AT+ROLE=1
+Responce:OK
+4. Set the password of device (Mindwave mobile2), default maybe 0000 or 1234, you can use your smartphone or computer to confirm the password.
+Command:AT+PSWD=0000
+Responce:OK
+5. Set the HC-05 can only connect to the specifict device.
+Command:AT+CMODE=1
+Responce:OK
+6. Set the device ID of Mindwave Mobile2 (there is a sticker on the earphone)
+Command: AT+BIND=2471,89,e9d8cb
+Responce:OK
+7. IAC setup
+Command: AT+IAC=9e8b33
+Responce: OK
+8. CLASS setup
+Command: AT+CLASS=0
+Responce:OK
+9. INQM setup
+Command:AT+INQM=1,7,48
+Responce:OK
+
+After setting the module, turn off the Mindwave mobile 2, and ensure all of the device which connected to the headset are disconnected, or turned off.
+Then repower the HC-05, the LED onboard will flash fast (about once per 500mS )
+It means the HC-05 is operat in data mode.
+Wait about 10s for HC-05 initialize, then turn on the mindwave mobile 2, if HC-05 and Mindwave mobile 2 are connected, the LED will fast flash twice per second and turning off.
+If not, please check the command above, and double check the connection of your hardware and the password of the Mindwave mobile 2 using "AT+PSWD=(1234/0000)"
+Now the basic setup of HC-05 is done, continue reading to connect the HC-05 with Arduino.
 
 可以使用USB-TTL轉接線直接透過串列埠通訊軟體進行設定，或者將Arduino當作串列埠轉換器。
 將藍芽模組的VCC TX RX GND 連接妥當後，進行模組設定。
@@ -73,29 +113,30 @@ Arduino Code:
 將本Repo的程式碼燒錄到ArduinoUno上即可。
 
 
-# Official Website:
-http://neurosky.com/
-台灣代理商:
-勝宏精密科技
-http://brain-sh.tw/index.php
+# Reference
 
-# Example on Youtube:
+## Official Website: 
+
+http://neurosky.com/ 
+
+台灣代理商: 勝宏精密科技 [http://brain-sh.tw/index.php]
+
+## Example on Youtube:
 https://www.youtube.com/watch?v=iFBhTHGXcMQ
 https://www.youtube.com/watch?v=kbzIDT0Aby8
 
-# Official Arduino support
+## Official Arduino support
 http://developer.neurosky.com/docs/doku.php?id=mindwave_mobile_and_arduino
 
-# Sensor used:
+## Sensor used:
 EEG (Electro Encephalo Graphy) sensor
 http://neurosky.com/biosensors/eeg-sensor/biosensors/
 https://zh.wikipedia.org/wiki/%E8%85%A6%E9%9B%BB%E5%9C%96
 
-# HC-05 AT command wiki 
+## HC-05 AT command wiki 
 
 https://www.itead.cc/wiki/Serial_Port_Bluetooth_Module_(Master/Slave)_:_HC-05
 
-# Reference
+## Some tutorial but not useful
+
 https://www.pantechsolutions.net/interfacing-mindwave-mobile-with-arduino
-https://create.arduino.cc/projecthub/WesleyCMD/mind-control-drone-c8b28a?ref=tag&ref_id=mindwave&offset=0
-https://create.arduino.cc/projecthub/arunmagesh/internet-of-brain-iot-6da4e4?ref=tag&ref_id=mindwave&offset=1
