@@ -19,18 +19,26 @@ wire
 
 # How to use
 
-First, make sure all your equipments works fine, then setup your HC-05 Bluetooth module using USB-TTL converter or Arduino UNO as below.
-Second, connect the LED and resistor properly.
-Third, upload the code for Arduino in this repositery.
+First, make sure all your equipments works fine, then setup your HC-05 Bluetooth module using USB-TTL converter or Arduino UNO as below. 
+
+Second, connect the LED and resistor properly. 
+
+Third, upload the code for Arduino in this repositery. 
+
 Finally, you can mind control the LED, and test how concentrate you can.
 
 # HC05 Bluetooth module setup
 
-First, Connect the USB-TTL converter to your HC-05 BT module,  the TX of converter connect to RX of HC-05, RX of converter connect to TX of HC-05.
-Second, use serial software such as RealTerm or Putty to transmit the AT commant to the bluetooth module.
-Third, press the button on the module before powering up, then keep pressing until the LED on HC-05 start blinking slowly (about once per second).
-This means HC-05 is operation in AT command mode.
-Then, follow the guide below to  setup your HC-05 module.
+First, Connect the USB-TTL converter to your HC-05 BT module,  the TX of converter connect to RX of HC-05, RX of converter connect to TX of HC-05. 
+
+Second, use serial software such as RealTerm or Putty to transmit the AT commant to the bluetooth module. 
+
+Third, press the button on the module before powering up, then keep pressing until the LED on HC-05 start blinking slowly (about once per second). 
+
+This means HC-05 is operation in AT command mode. 
+
+Then, follow the guide below to  setup your HC-05 module. 
+
 1. Test your BT module is alive
 Command: AT
 Responce: OK
